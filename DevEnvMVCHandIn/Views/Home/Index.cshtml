@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Welcome!</h1>
+    <p class="lead lead-cust">Snap up our latest finds and creations! Shop new season drops online at our web shop. Always open, always awesome. Clothing, accessories and apartment items for men and women. Explore our hipster vibe known for on-trend fashions, accessories & quirky home-decor items.<span> We can deliver the product to your door by <b>@DateTime.Now.AddDays(1).ToLongDateString().</b></span></p>
+    @*<p>@Html.ActionLink("SHOP NEW IN BRANDS >>", "Products", "Home", null, new { @class = "btn btn-lg btn-hero" })</p>*@
+</div>
+
+<div class="row">
+    <div class="col-md-7">
+        <h2> Latest items in our shop</h2>
+        <br />
+        <table class="table table-responsive">
+            <thead class="thead-inverse">
+                <tr>
+                    @*<th>#</th>*@
+                    <th>Image</th>
+                    <th>Product Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            @foreach (var product in Model)
+            {
+            <tr>
+                <td><img src='@Url.Action("Picture", new { id = product.ID })' /></td>
+                <td>@product.Name</td>
+                <td>@Html.ActionLink("See details", "Details", new { id = product.ID })</td>
+                @*<td>@product.Description</td>
+        <td>@product.Price</td>*@
+            </tr>
+            }
+        </table>
+    </div>
+    <div class="col-md-1"></div>
+
+        <div class="col-md-4 search">
+            <br /><br />
+            <h2> Search for products</h2>
+            <br />
+            @using (Html.BeginForm())
+            {
+                @Html.TextBox("searchCriteria");
+                <input type="submit" value="Search" />
+            }
+
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-4">
+            <h2>FAVORITE LOOKS</h2>
+            <img src="~/Images/girl.jpg" alt="Women`s new arrivals image" height="367px" />
+            <br /><br />
+            <p><a class="btn btn-default" href="#">SHOP WOMEN'S &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>NEW TRENDS</h2>
+            <img src="~/Images/boy.jpg" alt="Men`s new arrivals image" height="367px" />
+            <br /><br />
+            <p><a class="btn btn-default" href="#">SHOP MEN'S &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>SALE AND OFFERS</h2>
+            <img src="~/Images/home.jpg" alt="Home`s new arrivals image" height="367px" />
+            <br /><br />
+            <p><a class="btn btn-default" href="#">SHOP HOME & GIFTS &raquo;</a></p>
+        </div>
+    </div>
+<br/>
